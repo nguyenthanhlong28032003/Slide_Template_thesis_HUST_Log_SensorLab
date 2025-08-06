@@ -1,0 +1,108 @@
+\documentclass[aspectratio=169, t]{beamer}
+\usepackage[T5]{fontenc}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{longtable} % for long table
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+
+\renewcommand{\familydefault}{\sfdefault} % Chọn font không chân
+% \renewcommand{\familydefault}{\rmdefault} % Chọn font hỗ trợ T5 encoding
+
+\usepackage{caption}
+\usepackage{siunitx}
+
+\definecolor{BlueDefault}{rgb}{0.2,0.2,0.7}
+
+% Ẩn navigation (biểu tượng điều hướng)
+\setbeamertemplate{navigation symbols}{}
+
+% Thiết lập nền cho các trang nội dung bình thường (được đặt trước khi vào document)
+\newcommand{\normalbackground}{%
+    \usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]{Source_slides/Normal_page_HUST.pdf}}%
+}
+
+\newcommand{\titlebackground}{%
+    \usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]{Source_slides/Title_page_HUST.pdf}}%
+}
+
+% Đổi màu tiêu đề cho các trang bình thường
+\setbeamercolor{frametitle}{fg=white} % Đặt màu chữ title là trắng cho trang bình thường
+
+% Nâng tiêu đề bằng \raisebox
+\setbeamertemplate{frametitle}{%
+    \vspace{0.3em}
+    \hspace{-1em} \insertframetitle
+    \vspace{2mm}
+}
+
+% Hiển thị số trang ở góc dưới bên phải
+\setbeamertemplate{footline}{%
+    \hfill % Đẩy số trang sang phải
+    \insertframenumber/\inserttotalframenumber
+    \hspace{2em} % Tạo khoảng cách từ mép phải
+    \vspace{1em}
+}
+
+%% Make Table of Contents %%
+\AtBeginSection[]{
+  \begin{frame}
+  \frametitle{Mục lục}
+  \tableofcontents[currentsection]
+  \end{frame}
+}
+
+%% Section numbering %%
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}[subsections numbered]
+
+
+\renewcommand{\figurename}{Hình \thefigure}
+\renewcommand{\tablename}{Bảng \thetable}
+
+
+
+
+%%%%% Bibliography %%%%%
+\usepackage[backend=biber,style=ieee]{biblatex}
+\addbibresource{citation.bib}
+
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=BlueDefault,
+	filecolor=BlueDefault,
+    citecolor=BlueDefault,
+	urlcolor=BlueDefault,
+	pdftitle={Overleaf Example},
+	pdfpagemode=FullScreen,
+}
+
+\begin{document}
+
+\titlebackground
+
+\input{Slides/Title}
+
+\normalbackground
+
+\section{Tổng quan}
+
+\input{Slides/Introduction}
+
+\section{Thiết kế}
+
+\input{Slides/Design}
+
+\section{Kết luận và định hướng phát triển}
+
+\input{Slides/Conclusion}
+
+\input{Slides/Bibliography}
+
+\section{Phụ lục}
+
+\input{Slides/Appendix}
+
+\end{document}

@@ -1,0 +1,61 @@
+\documentclass{standalone}
+
+\usepackage[T5]{fontenc}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage{helvet,sfmath}
+\usepackage{siunitx}
+\usepackage{circuitikz}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,calc,patterns}
+\usepackage{tikz,tkz-euclide}
+
+\usetikzlibrary{decorations.markings}
+
+%% midarrow
+\tikzset{
+    mid arrow/.style={
+        decoration={markings, mark=at position 0.5 with {\arrow{stealth}}},
+        postaction={decorate}
+    }
+}
+
+%% Color
+\definecolor{H_field}{RGB}{3, 49, 161}  % #0331A1
+\definecolor{M_dipole}{RGB}{0, 127, 189} % #007FBD
+\definecolor{J_Current}{RGB}{91, 199, 225} % #5BC7E1
+\definecolor{Orange_note}{RGB}{248, 136, 16} % #F88810
+\definecolor{P_dipole}{RGB}{201, 1, 161}  % #C901A1
+\definecolor{E_field}{RGB}{113, 11, 121} % #710B79
+\definecolor{Ground}{RGB}{192, 192, 192} %C0C0C0
+
+\begin{document}
+
+\pgfdeclarehorizontalshading{myshading}{100bp}{
+    color(25bp)=(blue);
+    color(35bp)=(green);
+    color(50bp)=(yellow);
+    color(100bp)=(red)
+    }
+
+\begin{circuitikz}[scale=1]
+    %% Background
+    \draw[draw=none] (-2,-2) rectangle (16,7);
+    %% Slot antenna
+    \draw[ultra thick, fill=Ground] (4.4,1) rectangle (4.8,5);
+    \draw[thick] (4.6,0) to[fill=white, sV] (4.6,1);
+    \draw[ultra thick, fill=Ground] (-1,0) rectangle (15,-0.2);
+    \draw[ultra thick, fill=Ground] (0.5,0) rectangle (0.9,5);
+    \shade[right color = E_field!50, left color = white] (5,0) .. controls ++(60:3) and ++(90:3) .. (12,0) to (5,0);
+    \draw[thick] (5,0) .. controls ++(60:3) and ++(90:3) .. (12,0) to (5,0);
+
+    \draw[thick, P_dipole, -Stealth] (4.6, 1.5) to (4.6,4.5);
+
+    \draw
+    (4,3) node{\LARGE \(\mathbf{J}\)}
+    (0.7,5.5) node{\LARGE Tấm phản xạ}
+    ;
+    
+\end{circuitikz}
+
+\end{document}

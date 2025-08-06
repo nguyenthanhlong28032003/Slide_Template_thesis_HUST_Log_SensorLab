@@ -1,0 +1,45 @@
+\subsection{Bộ tham số tán xạ trong đánh giá mạch cao tần}
+
+\begin{frame}{Bộ tham số tán xạ trong đánh giá mạch cao tần}
+
+\begin{itemize}
+    \item Bộ tham số tán xạ \(S\):
+\end{itemize}
+\begin{equation}
+    \left[
+    \begin{array}{c}
+         V_1^- \\
+         V_2^- \\
+         \vdots \\
+         V_N^-
+    \end{array}
+    \right]
+    =
+    \left[
+    \begin{array}{cccc}
+        S_{11} & S_{12} & \ldots & S_{1N} \\
+        S_{21} & S_{22} & \ldots & S_{2N} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        S_{N1} & S_{N2} & \ldots & S_{NN}
+    \end{array}\right]
+    =
+    \left[
+    \begin{array}{c}
+         V_1^+ \\
+         V_2^+ \\
+         \vdots \\
+         V_N^+
+    \end{array}
+    \right]
+\end{equation}
+hay viết đơn giản:
+\begin{equation}
+    S_{ij} = \dfrac{V_i^-}{V_j^+} |_{V_k^+ = 0, k \neq j}
+\end{equation}
+Trong đó,
+\begin{itemize}
+    \item \(V_{i}^+\) là biên độ sóng điện áp tới cổng \(i\), \(V_{i}^-\) là biên độ sóng phản xạ từ cổng \(i\).
+    \item \(S_{ii}\) là hệ số sóng phản xạ tại cổng \(i\), \(S_{ij}\) là hệ số truyền qua từ cổng \(i\) sang cổng \(j\).
+\end{itemize}
+\end{frame}
+

@@ -1,0 +1,56 @@
+\documentclass{standalone}
+\usepackage[T5]{fontenc}
+
+\renewcommand*\familydefault{\sfdefault}
+\usepackage{helvet,sfmath}
+\usepackage{siunitx}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,calc,patterns}
+\usepackage{tikz,tkz-euclide}
+
+\usetikzlibrary{decorations.markings}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{filecontents}
+\usetikzlibrary{pgfplots.fillbetween}
+
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+    width=10cm,
+    height=6cm,
+    xlabel={Tần số (GHz)},
+    ylabel={Độ lớn trở kháng \(Z\) (\(\Omega\))},
+    xmode=log,
+    ymode=log,
+    % log basis x=10,
+    xtick={1e9,2e9,3e9,4e9,5e9,6e9,7e9,8e9},
+    xticklabels={1,2,3,4,5,6,7,8},
+    xmin=1e9, xmax=8e9,
+    ymin=0.1, ymax=100,
+    grid=both,
+    minor grid style={gray!25},
+    major grid style={gray!50},
+    % enlargelimits=true,
+    % legend style={at={(0.98,0.02)}, anchor=south east},
+]
+
+\path[name path=top]    (axis cs:0,200) -- (axis cs:3e9,200);
+\path[name path=bottom] (axis cs:0,0.001) -- (axis cs:3e9,0.001);
+\addplot [
+    fill=yellow!80,
+    fill opacity=0.5
+] fill between [of=top and bottom];
+
+
+\addplot [
+    line width=1pt, % Đây là độ dày đường vẽ rất mảnh
+    color=blue
+] 
+table [x=freq, y={mag(Zin2)}, col sep=comma] {dB_Impedance_capacitor.txt};
+\end{axis}
+\draw (2.3,1) node{\includegraphics[width=40mm]{Figures/Equivalent_capacitor.pdf}};
+\end{tikzpicture}
+\end{document}
